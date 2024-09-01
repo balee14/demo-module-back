@@ -1,0 +1,9 @@
+rootProject.name = 'demo-module-back'
+include('demo-app-admin')
+include('demo-app-batch')
+include('demo-app-user')
+include('demo-core')
+include('demo-domain-member')
+include('demo-domain-test')
+include('demo-infra-aws')
+include('demo-infra-mariadb')

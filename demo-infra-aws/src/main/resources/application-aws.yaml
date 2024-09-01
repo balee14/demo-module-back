@@ -1,0 +1,36 @@
+spring:
+  cloud:
+    aws:
+      credentials:
+        access-key: dkfjskdfjklsdjfklsjfkls
+        secret-key: dlkfjskldfjdkslfj0378490834908
+        #      profile-name: stratospheric
+      region:
+        static: ap-northeast-2
+        auto: false
+      bucket:
+        static: dklfjsldkfjkdslfjkl
+      #    region: ap-northeast-2
+      #    accessKeyId: dkfjskdfjklsdjfklsjfkls
+      #    secretKey: dlkfjskldfjdkslfj0378490834908
+
+---
+spring:
+  config:
+    activate:
+      on-profile: aws-local
+
+
+---
+spring:
+  config:
+    activate:
+      on-profile: aws-dev
+
+
+---
+spring:
+  config:
+    activate:
+      on-profile: aws-prod
+

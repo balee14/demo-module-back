@@ -1,0 +1,35 @@
+# 스프링 시큐리티 debug-level 로깅 켜보기
+logging:
+  level:
+    "[org.springframework.security]": DEBUG
+
+######
+###### jwt
+######
+jwt:
+  secret-key: sdkjfskldjfklsjfkljsd902384902384908230948290348klsdjflksdjfkldsjfsklj029384902384098
+  expiration-minutes: 30    # 30분
+  refresh-expiration-hours: 120    # 2시간
+  issuer: sklfjksldfj92347
+  #  token-validity-in-seconds: 600 # 10 min
+
+---
+spring:
+  config:
+    activate:
+      on-profile: member-local
+
+
+---
+spring:
+  config:
+    activate:
+      on-profile: member-dev
+
+
+---
+spring:
+  config:
+    activate:
+      on-profile: member-prod
+

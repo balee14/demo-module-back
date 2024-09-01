@@ -1,0 +1,19 @@
+bootJar { enabled = true }
+jar { enabled = false }
+
+dependencies {
+
+    implementation project(":demo-core")
+    implementation project(":demo-domain-member")
+    implementation project(":demo-domain-test")
+    implementation project(":demo-infra-aws")
+
+    implementation 'org.springframework.boot:spring-boot-starter'
+    testImplementation 'org.springframework.boot:spring-boot-starter-test'
+
+    // security
+    implementation 'org.springframework.boot:spring-boot-starter-security'
+    testImplementation 'org.springframework.security:spring-security-test'
+
+
+}

@@ -1,0 +1,103 @@
+spring:
+  profiles:
+    active: local
+    group:
+      local:
+        - local
+        - member-local
+        - db-local
+      #        - aws-local
+      dev:
+        - dev
+        - member-dev
+        - db-dev
+      #        - aws-dev
+      prod:
+        - prod
+        - member-prod
+        - db-prod
+    #        - aws-prod
+    include:
+      - member
+      - db
+  #      - aws
+  #  devtools:
+  #    livereload:
+  #      enabled: true
+
+  #sprign batch
+  batch:
+    job:
+      enabled: true
+
+  # quartz
+  quartz:
+    job-store-type: jdbc
+    wait-for-jobs-to-complete-on-shutdown: true
+    overwrite-existing-jobs: true
+    jdbc:
+      initialize-schema: never
+    properties:
+      org:
+        quartz:
+          scheduler:
+            instanceName: scheduler
+            instanceId: AUTO
+          jobStore:
+            class: org.quartz.impl.jdbcjobstore.JobStoreTX
+            driverDelegateClass: org.quartz.impl.jdbcjobstore.StdJDBCDelegate
+            dataSource: quartzDataSource
+            useProperties: false
+            tablePrefix: QRTZ_
+            misfireThreshold: 60000
+            clusterCheckinInterval: 1000
+            isClustered: true
+          dataSource:
+            quartzDataSource:
+              URL: test
+              driver: com.mysql.cj.jdbc.Driver
+              user: pomgplatform
+              password: pomg#$1232
+              provider: hikaricp
+          threadPool:
+            class: org.quartz.simpl.SimpleThreadPool
+            threadCount: 10
+            threadPriority: 5
+            threadsInheritContextClassLoaderOfInitializingThread: true
+
+  # jpa pageable
+  data:
+    web:
+      pageable:
+        default-page-size: 10
+        one-indexed-parameters: true
+
+#  pid:
+#    file: batch.pid
+
+---
+spring:
+  config:
+    activate:
+      on-profile: local
+
+server:
+  port: 9093
+
+---
+spring:
+  config:
+    activate:
+      on-profile: dev
+
+server:
+  port: 9093
+
+---
+spring:
+  config:
+    activate:
+      on-profile: prod
+
+server:
+  port: 9093

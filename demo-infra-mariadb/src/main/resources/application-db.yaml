@@ -1,0 +1,66 @@
+spring:
+  jpa:
+    #    hibernate:
+    #      naming:
+    #        implicit-strategy: org.hibernate.boot.model.naming.ImplicitNamingStrategyComponentPathImpl
+    #        physical-strategy: org.hibernate.boot.model.naming.CamelCaseToUnderscoresNamingStrategy
+    properties:
+      hibernate:
+        show_sql: true  # sql 보기
+        format_sql: true  # sql query formatting
+        use_sql_comments: true  # sql 추가적인 주석을 표시하기
+        default_schema: rapid
+        dialect: org.hibernate.dialect.MySQLDialect
+#    database-platform: org.hibernate.dialect.MySQLDialect
+logging:
+  level:
+    org:
+      hibernate:
+        type:
+          descriptor:
+            sql: trace # ?에 어떤 값이 들어갔는지 확인하기
+
+---
+spring:
+  config:
+    activate:
+      on-profile: db-local
+
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: test
+    username: test
+    password: test
+  jpa:
+    hibernate:
+      ddl-auto: update  # option type: create, create-drop, update, validate, none
+
+---
+spring:
+  config:
+    activate:
+      on-profile: db-dev
+
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: test
+    username: test
+    password: test
+  jpa:
+    hibernate:
+      ddl-auto: validate  # option type: create, create-drop, update, validate, none
+
+---
+spring:
+  config:
+    activate:
+      on-profile: db-prod
+
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: test
+    username: test
+    password: test
+  jpa:
+    hibernate:
+      ddl-auto: validate  # option type: create, create-drop, update, validate, none
