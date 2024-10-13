@@ -1,4 +1,5 @@
 ## 목차
+- [README](./README.md)
 - [모듈 구조 설명](./README_MODULE.md)
 - [BATCH 모듈 설명](./README_BATCH.md)
 - [CORE 모듈 설명](./README_CORE.md)
