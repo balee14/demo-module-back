@@ -9,8 +9,8 @@
 [BATCH 모듈 설명]
 ======================
 
-## 플로우
-- controller -> domain(service) -> Job(JobBuilder, StepBuilder, Tasklet)
+## 배치 플로우
+- controller -> domain(service) -> Job(JobBuilder, StepBuilder) -> item(Item OR Tasklet)
 
 ## 스케줄러
-- quartz 적용
+- quartz 적용 예정

@@ -7,9 +7,9 @@ import org.springframework.batch.item.ItemProcessor;
 import org.springframework.stereotype.Component;
 
 @Component
-public class TestBatchItemProcessor implements ItemProcessor<PfTestBatch, PfTestBatch> {
+public class BatchTestItemProcessor implements ItemProcessor<PfTestBatch, PfTestBatch> {
 
-    private static final Logger logger = LoggerFactory.getLogger(TestBatchItemProcessor.class);
+    private static final Logger logger = LoggerFactory.getLogger(BatchTestItemProcessor.class);
 
     @Override
     public PfTestBatch process(PfTestBatch pfTestBatch) {

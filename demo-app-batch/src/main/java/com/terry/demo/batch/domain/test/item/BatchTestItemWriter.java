@@ -12,13 +12,13 @@ import org.springframework.stereotype.Component;
 import javax.sql.DataSource;
 
 @Component
-public class TestBatchItemWriter implements ItemWriter<PfTestBatch> {
+public class BatchTestItemWriter implements ItemWriter<PfTestBatch> {
 
-    private static final Logger logger = LoggerFactory.getLogger(TestBatchItemWriter.class);
+    private static final Logger logger = LoggerFactory.getLogger(BatchTestItemWriter.class);
 
     private final JdbcBatchItemWriter<PfTestBatch> itemWriter;
 
-    public TestBatchItemWriter(DataSource dataSource) {
+    public BatchTestItemWriter(DataSource dataSource) {
         this.itemWriter = new JdbcBatchItemWriter<>();
         this.itemWriter.setDataSource(dataSource);
         this.itemWriter.setSql("INSERT INTO pf_test_batch (company_code, id_email, description) VALUES (:companyCode, :idEmail, :description)");

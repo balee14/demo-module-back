@@ -7,9 +7,9 @@ import org.springframework.batch.item.ItemReader;
 import org.springframework.stereotype.Component;
 
 @Component
-public class TestBatchItemReader implements ItemReader<PfTestBatch> {
+public class BatchTestItemReader implements ItemReader<PfTestBatch> {
 
-    private static final Logger logger = LoggerFactory.getLogger(TestBatchItemReader.class);
+    private static final Logger logger = LoggerFactory.getLogger(BatchTestItemReader.class);
 
     private int count = 0;
 
