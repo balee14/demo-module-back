@@ -1,9 +1,13 @@
 package com.terry.demo;
 
+import jakarta.annotation.PostConstruct;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.autoconfigure.domain.EntityScan;
+import org.springframework.boot.context.ApplicationPidFileWriter;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
+
+import java.util.TimeZone;
 
 @SpringBootApplication(scanBasePackages = "com.terry.demo")
 @EnableJpaRepositories(basePackages = "com.terry.demo")
@@ -11,7 +15,17 @@ import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 public class DemoAppBatchApplication {
 
     public static void main(String[] args) {
-        SpringApplication.run(DemoAppBatchApplication.class, args);
+
+        SpringApplication api = new SpringApplication(DemoAppBatchApplication.class);
+        api.addListeners(new ApplicationPidFileWriter());
+        api.run(args);
+
+    }
+
+    @PostConstruct
+    public void setTime() {
+        // timezone 설정
+        TimeZone.setDefault(TimeZone.getTimeZone("Asia/Seoul"));
     }
 
 }

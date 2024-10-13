@@ -8,6 +8,7 @@ import org.springframework.stereotype.Component;
 @RequiredArgsConstructor
 @Component
 public class BatchService {
+
     private final QuartzService quartzService;
 
     @PostConstruct
@@ -18,4 +19,5 @@ public class BatchService {
             e.printStackTrace();
         }
     }
+
 }

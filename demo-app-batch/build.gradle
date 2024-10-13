@@ -5,6 +5,7 @@ dependencies {
 
     implementation project(":demo-core")
     implementation project(":demo-domain-member")
+    implementation project(":demo-domain-test")
 
     // [batch]
     implementation 'org.springframework.boot:spring-boot-starter-batch'
@@ -16,12 +17,6 @@ dependencies {
      * 위에는 batch 관련 설정
      */
 
-//    implementation 'org.springframework.boot:spring-boot-starter'
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
-//    implementation 'org.springframework.boot:spring-boot-starter-web'
-
-    // data관련
-//    implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
-
 
 }

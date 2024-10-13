@@ -1,18 +1,20 @@
 package com.terry.demo.batch;
 
-import java.time.LocalDateTime;
-import java.time.format.TextStyle;
-import java.util.Locale;
-import java.util.Map;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.quartz.*;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDateTime;
+import java.time.format.TextStyle;
+import java.util.Locale;
+import java.util.Map;
+
 @Slf4j
 @RequiredArgsConstructor
 @Service
 public class QuartzService {
+
     private final Scheduler scheduler;
 
     public void addSimpleJob(Class job, String name, String desc, Map params, Integer seconds) throws SchedulerException, SchedulerException {

@@ -1,8 +1,7 @@
 package com.terry.demo.core.util;
 
-import com.terry.demo.core.dto.CommonCustomType;
-import com.terry.demo.core.dto.CommonRuntimeException;
-import com.terry.demo.core.entity.PfAuthority;
+import com.terry.demo.core.dto.common.CommonCustomType;
+import com.terry.demo.core.dto.common.CommonRuntimeException;
 import com.terry.demo.core.entity.PfMemberPrincipal;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.security.core.Authentication;
@@ -17,12 +16,12 @@ import java.util.stream.Collectors;
 public class PfMemberUtil {
 
     /**
-     *
+     * 회원 아이디
      * @return
      */
-    public static Long getMemberId() {
+    public static String getMemberId() {
 
-        Long memberId = null;
+        String memberId = null;
 
         // authentication객체가 저장되는 시점은 JwtFilter의 doFilter 메소드에서
         // Request가 들어올 때 SecurityContext에 Authentication 객체를 저장해서 사용
@@ -39,7 +38,8 @@ public class PfMemberUtil {
     }
 
     /**
-     * getCurrentMembername 메소드의 역할은 Security Cont
+     * 회원 아이디 이메일
+     * 로그인이 아닌 경우 'anonymousUser'로 설정됨
      * @return
      */
     public static String getIdEmail() {
@@ -64,7 +64,7 @@ public class PfMemberUtil {
     }
 
     /**
-     *
+     * 회원명
      * @return
      */
     public static String getMemberName() {
@@ -81,15 +81,14 @@ public class PfMemberUtil {
         }
 
         PfMemberPrincipal pfMemberPrincipal = (PfMemberPrincipal) authentication.getPrincipal();
-        memberName = pfMemberPrincipal.getPfMember().getName();
+        memberName = pfMemberPrincipal.getPfMember().getMemberName();
 
         return ObjectUtils.isEmpty(memberName)? "" : memberName ;
 
     }
 
     /**
-     * getCurrentMembername 메소드의 역할은 Security Cont
-     *
+     * 회원 권한
      * @return
      */
     public static List<String> getMemberAuthority() {
@@ -98,8 +97,8 @@ public class PfMemberUtil {
         // Request가 들어올 때 SecurityContext에 Authentication 객체를 저장해서 사용
         final Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         PfMemberPrincipal pfMemberPrincipal = (PfMemberPrincipal) authentication.getPrincipal();
-        return pfMemberPrincipal.getPfMember().getAuthorities().stream()
-            .map(PfAuthority::getAuthorityName)
+        return pfMemberPrincipal.getPfMember().getPfMemberRelationAuthorityList().stream()
+                .map(memberAuthority -> memberAuthority.getPfAuthority().getAuthorityName())
             .collect(Collectors.toList());
 
     }

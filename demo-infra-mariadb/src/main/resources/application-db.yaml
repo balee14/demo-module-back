@@ -1,24 +1,43 @@
 spring:
   jpa:
-    #    hibernate:
-    #      naming:
-    #        implicit-strategy: org.hibernate.boot.model.naming.ImplicitNamingStrategyComponentPathImpl
-    #        physical-strategy: org.hibernate.boot.model.naming.CamelCaseToUnderscoresNamingStrategy
+    show-sql: true  # SQL 로그를 출력
     properties:
       hibernate:
         show_sql: true  # sql 보기
         format_sql: true  # sql query formatting
         use_sql_comments: true  # sql 추가적인 주석을 표시하기
-        default_schema: rapid
+        default_schema: demo
         dialect: org.hibernate.dialect.MySQLDialect
-#    database-platform: org.hibernate.dialect.MySQLDialect
+  #        database-platform: org.hibernate.dialect.MySQLDialect
+  #    hibernate:
+  #      naming:
+  #        implicit-strategy: org.hibernate.boot.model.naming.ImplicitNamingStrategyComponentPathImpl
+  #        physical-strategy: org.hibernate.boot.model.naming.CamelCaseToUnderscoresNamingStrategy
+
+  datasource:
+    hikari:
+      connection-timeout: 30000  # 30초
+      idle-timeout: 30000      # 30초
+      max-lifetime: 30000     # 30초 --> Connection Lifetime은 데이터베이스나 네트워크에서 연결이 유지되는 최대 시간을 정의합니다.
+      maximum-pool-size: 10     # 최대 10개의 연결 유지
+      #test-query: SELECT 1       # 유효성 검사용 쿼리
+
 logging:
   level:
     org:
+      springframework:
+        core:
+          JdbcTemplate: DEBUG
+          StatementCreatorUtils: TRACE
       hibernate:
+        orm:
+          jdbc:
+            bind: trace # 쿼리값 설정
+        sql: DEBUG
         type:
           descriptor:
-            sql: trace # ?에 어떤 값이 들어갔는지 확인하기
+            sql:
+              BasicBinder: TRACE
 
 ---
 spring:
@@ -28,9 +47,9 @@ spring:
 
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
-    url: test
-    username: test
-    password: test
+    url: jdbc:mysql://local-demo.cpqaa60ks9vf.ap-northeast-2.rds.amazonaws.com:3306/demo?characterEncoding=UTF-8&serverTimezone=Asia/Seoul
+    username: demo
+    password: demo#$1232
   jpa:
     hibernate:
       ddl-auto: update  # option type: create, create-drop, update, validate, none
@@ -43,9 +62,9 @@ spring:
 
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
-    url: test
-    username: test
-    password: test
+    url: jdbc:mysql://local-demo.cpqaa60ks9vf.ap-northeast-2.rds.amazonaws.com:3306/demo?characterEncoding=UTF-8&serverTimezone=Asia/Seoul
+    username: demo
+    password: demo#$1232
   jpa:
     hibernate:
       ddl-auto: validate  # option type: create, create-drop, update, validate, none
@@ -58,9 +77,9 @@ spring:
 
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
-    url: test
-    username: test
-    password: test
+    url: jdbc:mysql://local-demo.cpqaa60ks9vf.ap-northeast-2.rds.amazonaws.com:3306/demo?characterEncoding=UTF-8&serverTimezone=Asia/Seoul
+    username: demo
+    password: demo#$1232
   jpa:
     hibernate:
       ddl-auto: validate  # option type: create, create-drop, update, validate, none

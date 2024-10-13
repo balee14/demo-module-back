@@ -2,17 +2,17 @@ spring:
   cloud:
     aws:
       credentials:
-        access-key: dkfjskdfjklsdjfklsjfkls
-        secret-key: dlkfjskldfjdkslfj0378490834908
+        access-key: demo-access-key
+        secret-key: demo-secret-key
         #      profile-name: stratospheric
       region:
         static: ap-northeast-2
         auto: false
       bucket:
-        static: dklfjsldkfjkdslfjkl
+        static: demo-bucket-static
       #    region: ap-northeast-2
-      #    accessKeyId: dkfjskdfjklsdjfklsjfkls
-      #    secretKey: dlkfjskldfjdkslfj0378490834908
+      #    accessKeyId: demo-accessKeyId
+      #    secretKey: demo-secretKey
 
 ---
 spring:

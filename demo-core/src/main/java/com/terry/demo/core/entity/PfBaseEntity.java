@@ -4,7 +4,6 @@ import jakarta.persistence.Column;
 import jakarta.persistence.EntityListeners;
 import jakarta.persistence.MappedSuperclass;
 import lombok.Getter;
-import lombok.Setter;
 import org.hibernate.annotations.ColumnDefault;
 import org.hibernate.annotations.Comment;
 import org.springframework.data.annotation.CreatedBy;
@@ -15,10 +14,12 @@ import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import java.time.LocalDateTime;
 
+@Getter
+//@SuperBuilder
+//@AllArgsConstructor
+//@NoArgsConstructor(access = AccessLevel.PROTECTED)
 @EntityListeners(AuditingEntityListener.class)
 @MappedSuperclass // 객체의 입장에서 공통 매핑 정보가 필요할 때 사용
-@Getter
-@Setter
 public abstract class PfBaseEntity {
 
     @Comment("등록일")

@@ -1,4 +1,6 @@
 spring:
+  pid:
+    file: pid-batch-demo.pid
   profiles:
     active: local
     group:
@@ -6,70 +8,30 @@ spring:
         - local
         - member-local
         - db-local
+        - quartz-local
       dev:
         - dev
         - member-dev
         - db-dev
+        - quartz-prod
       prod:
         - prod
         - member-prod
         - db-prod
+        - quartz-prod
     include:
       - member
       - db
-#  devtools:
-#    livereload:
-#      enabled: true
+      - quartz
+  #  devtools:
+  #    livereload:
+  #      enabled: true
 
-  #sprign batch
-  batch:
-    job:
-      enabled: true
-
-  # quartz
-  quartz:
-    job-store-type: jdbc
-    wait-for-jobs-to-complete-on-shutdown: true
-    overwrite-existing-jobs: true
-    jdbc:
-      initialize-schema: never
-    properties:
-      org:
-        quartz:
-          scheduler:
-            instanceName: scheduler
-            instanceId: AUTO
-          jobStore:
-            class: org.quartz.impl.jdbcjobstore.JobStoreTX
-            driverDelegateClass: org.quartz.impl.jdbcjobstore.StdJDBCDelegate
-            dataSource: quartzDataSource
-            useProperties: false
-            tablePrefix: QRTZ_
-            misfireThreshold: 60000
-            clusterCheckinInterval: 1000
-            isClustered: true
-          dataSource:
-            quartzDataSource:
-              URL: test
-              driver: com.mysql.cj.jdbc.Driver
-              user: test
-              password: test
-              provider: hikaricp
-          threadPool:
-            class: org.quartz.simpl.SimpleThreadPool
-            threadCount: 10
-            threadPriority: 5
-            threadsInheritContextClassLoaderOfInitializingThread: true
-
-  # jpa pageable
   data:
     web:
       pageable:
         default-page-size: 10
         one-indexed-parameters: true
-
-#  pid:
-#    file: batch.pid
 
 ---
 spring:
@@ -78,7 +40,7 @@ spring:
       on-profile: local
 
 server:
-  port: 9093
+  port: 9094
 
 ---
 spring:
@@ -87,7 +49,7 @@ spring:
       on-profile: dev
 
 server:
-  port: 9093
+  port: 9094
 
 ---
 spring:
@@ -96,4 +58,4 @@ spring:
       on-profile: prod
 
 server:
-  port: 9093
+  port: 9094

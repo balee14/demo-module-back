@@ -24,7 +24,8 @@ public class PfMemberPrincipal implements UserDetails {
         List<GrantedAuthority> authorities = new ArrayList<>();
 
         // Extract list of permissions (name)
-        this.pfMember.getAuthorities().stream().map(authority -> new SimpleGrantedAuthority(authority.getAuthorityName()))
+        this.pfMember.getPfMemberRelationAuthorityList().stream()
+                .map(memberAuthority -> new SimpleGrantedAuthority(memberAuthority.getPfAuthority().getAuthorityName()))
 //            .forEach(authorities::add);
             .collect(Collectors.toList());
 
@@ -43,7 +44,7 @@ public class PfMemberPrincipal implements UserDetails {
 
     @Override
     public String getPassword() {
-        return this.pfMember.getPwd();
+        return this.pfMember.getMemberPwd();
     }
 
     @Override
@@ -70,4 +71,5 @@ public class PfMemberPrincipal implements UserDetails {
     public boolean isEnabled() {
         return true;
     }
+
 }

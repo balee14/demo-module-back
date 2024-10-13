@@ -2,8 +2,8 @@ package com.terry.demo.core.config.enums;
 
 public interface EnumMapperType {
 
-    String getCode();
+    String getKey();
 
-    String getTitle();
+    String getValue();
 
 }

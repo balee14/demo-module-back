@@ -3,32 +3,37 @@ package com.terry.demo.core.entity;
 
 import jakarta.persistence.*;
 import lombok.*;
+import org.hibernate.annotations.BatchSize;
 import org.hibernate.annotations.Comment;
-import org.springframework.web.multipart.MultipartFile;
 
 
 @Entity
 @Getter
-@Setter
 @Builder
 @AllArgsConstructor
-@NoArgsConstructor
+@NoArgsConstructor (access = AccessLevel.PROTECTED)
+@BatchSize(size = 100)
 @Table(name = "pf_test")
 @Comment("테스트")
 public class PfTest extends PfBaseEntity {
 
-    @Comment("id")
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "test_id", unique = true, nullable = false)
-    private Long testId;
+    @Comment("id")
+    @Column(name = "test_id", unique = true, nullable = false, length = 50)
+    private String testId;
 
     @Comment("사용자ID")
-    @Column(name = "id_email", unique = true, nullable = false, length = 250) //사용자 ID
+    @Column(name = "id_email")
     private String idEmail;
 
-    @Transient
-    private MultipartFile multipartFile;
+    @Comment("설명")
+    @Column(name = "description")
+    private String description;
 
+    //@Transient
+    //private MultipartFile multipartFile;
+
+    @Version
+    private Integer version;
 
 }

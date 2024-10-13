@@ -1,4 +1,6 @@
 spring:
+  pid:
+    file: pid-admin-demo.pid
   profiles:
     active: local
     group:
@@ -21,15 +23,15 @@ spring:
       - member
       - aws
       - db
-#  devtools:
-#    livereload:
-#      enabled: true
+  #  devtools:
+  #    livereload:
+  #      enabled: true
 
   data:
     web:
       pageable:
         default-page-size: 10
-        one-indexed-parameters: true
+        one-indexed-parameters: true # page=1은 첫 번째 페이지를 나타냅니다. 기본적으로는 page=0이 첫 페이지였지만, 이 설정으로 1부터 시작하게 변경
 
 ---
 spring:
@@ -38,7 +40,7 @@ spring:
       on-profile: local
 
 server:
-  port: 9093
+  port: 9092
 
 ---
 spring:
@@ -47,7 +49,7 @@ spring:
       on-profile: dev
 
 server:
-  port: 9093
+  port: 9092
 
 ---
 spring:
@@ -56,4 +58,4 @@ spring:
       on-profile: prod
 
 server:
-  port: 9093
+  port: 9092

@@ -1,27 +1,27 @@
 package com.terry.demo.core.entity;
 
 import jakarta.persistence.*;
-import lombok.Getter;
-import lombok.Setter;
-import lombok.ToString;
+import lombok.*;
+import org.hibernate.annotations.BatchSize;
 import org.hibernate.annotations.ColumnDefault;
 import org.hibernate.annotations.Comment;
-import org.springframework.data.annotation.CreatedDate;
 
 import java.time.LocalDateTime;
 
 
 @Entity
 @Getter
-@Setter
-@ToString
+@Builder
+@AllArgsConstructor
+@NoArgsConstructor (access = AccessLevel.PROTECTED)
+@BatchSize(size = 100)
 @Table(name = "pf_member_token")
-@Comment("JWT TOKEN관리")
+@Comment("jwt token 관리")
 public class PfMemberToken extends PfBaseEntity {
 
-    @Comment("id")
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Comment("id")
     @Column(name = "token_id", unique = true, nullable = false)
     private Long tokenId;
 
@@ -34,26 +34,21 @@ public class PfMemberToken extends PfBaseEntity {
     private Boolean isUse;
 
     @Comment("토큰")
-    @Column(name="access_token", length = 250, nullable = false)
+    @Column(name="access_token", nullable = false, length = 512)
     private String accessToken;
 
-    @Comment("토큰 수정일")
-    @CreatedDate
+    @Comment("토큰 만료일")
     @ColumnDefault("current_timestamp()")
     @Column(name = "access_token_dt", updatable = false, nullable = false)
-    //@Column(name = "REG_DT", columnDefinition = "timestamp default CURRENT_TIMESTAMP not null comment '최초 등록 일자' ")
     private LocalDateTime accessTokenDt;
 
     @Comment("리플리쉬 토큰")
-    @Column(name="refresh_token", length = 250, nullable = false)
+    @Column(name="refresh_token", nullable = false, length = 512)
     private String refreshToken;
 
-    @Comment("리플리쉬 토큰 수정일")
-    @CreatedDate
+    @Comment("리플리쉬 토큰 만료알")
     @ColumnDefault("current_timestamp()")
     @Column(name = "refresh_token_dt", updatable = false, nullable = false)
     private LocalDateTime refreshTokenDt;
-
-
 
 }

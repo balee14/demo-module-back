@@ -1,0 +1,69 @@
+spring:
+  batch:
+    job:
+      enabled: false  # 서버 재시작시 배치 자동실행 방지
+      name: ${job.name:NONE}
+  quartz:
+    job-store-type: jdbc
+    wait-for-jobs-to-complete-on-shutdown: true
+    overwrite-existing-jobs: true
+    jdbc:
+      initialize-schema: always
+      #initialize-schema: never 운영환경에서 설정
+      #schema: classpath:quartz/spring_quartz.sql
+    properties:
+      org:
+        quartz:
+          scheduler:
+            instanceName: scheduler
+            instanceId: AUTO
+          jobStore:
+            class: org.quartz.impl.jdbcjobstore.JobStoreTX
+            driverDelegateClass: org.quartz.impl.jdbcjobstore.StdJDBCDelegate
+            dataSource: quartzDataSource
+            useProperties: false
+            tablePrefix: QRTZ_
+            misfireThreshold: 60000
+            clusterCheckinInterval: 1000
+            isClustered: true
+          dataSource:
+            quartzDataSource:
+              URL: jdbc:mysql://local-demo.cpqaa60ks9vf.ap-northeast-2.rds.amazonaws.com:3306/demo?serverTimezone=UTC&characterEncoding=UTF-8&autoReconnect=true
+              driver: com.mysql.cj.jdbc.Driver
+              user: demo
+              password: demo#$1232
+              provider: hikaricp
+#            hikari:
+#              connection-timeout: 30000  # 30초
+#              idle-timeout: 30000      # 30초
+#              max-lifetime: 30000     # 30초 --> Connection Lifetime은 데이터베이스나 네트워크에서 연결이 유지되는 최대 시간을 정의합니다.
+#              maximum-pool-size: 10     # 최대 10개의 연결 유지
+#              minimum-idle: 5
+#              test-query: SELECT 1
+
+          threadPool:
+            class: org.quartz.simpl.SimpleThreadPool
+            threadCount: 10
+            #threadPriority: 5
+            threadsInheritContextClassLoaderOfInitializingThread: true
+
+---
+spring:
+  config:
+    activate:
+      on-profile: quartz-local
+
+
+---
+spring:
+  config:
+    activate:
+      on-profile: quartz-dev
+
+
+---
+spring:
+  config:
+    activate:
+      on-profile: quartz-prod
+

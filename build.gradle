@@ -1,15 +1,20 @@
 plugins {
     id 'java'
     id 'java-library'
-    id 'org.springframework.boot' version '3.2.5'
-    id 'io.spring.dependency-management' version '1.1.4'
+    id 'org.springframework.boot' version '3.3.4'
+    id 'io.spring.dependency-management' version '1.1.6'
 }
 
 bootJar.enabled = false
-jar.enabled = false
+//jar.enabled = false
+
+group = 'com.terry'
+version = '1.0.0-SNAPSHOT'
 
 java {
-    sourceCompatibility = JavaVersion.VERSION_21
+    toolchain {
+        languageVersion = JavaLanguageVersion.of(21)
+    }
 }
 
 allprojects {
@@ -65,21 +70,6 @@ subprojects {
         // 기타
         developmentOnly 'org.springframework.boot:spring-boot-devtools'
 
-        // [spring-boot-starter]
-//		implementation 'org.springframework.boot:spring-boot-starter'
-//		testImplementation 'org.springframework.boot:spring-boot-starter-test'
-        // resources/application.properties --> spring.datasource
-//		implementation 'org.springframework.boot:spring-boot-starter-jdbc'
-//		implementation 'org.springframework.boot:spring-boot-starter-json'
-
-        // [JUnit5]
-//		testImplementation("org.junit.platform:junit-platform-launcher:1.5.2")
-//		testImplementation("org.junit.jupiter:junit-jupiter:5.5.2")
-
-        // [modulith]
-//		implementation 'org.springframework.modulith:spring-modulith-starter-core'
-//		testImplementation 'org.springframework.modulith:spring-modulith-starter-test'
-
     }
 
     dependencyManagement {
@@ -92,24 +82,4 @@ subprojects {
         useJUnitPlatform()
     }
 
-    // Querydsl 설정부
-//    def generated = 'src/main/generated'
-
-    // querydsl QClass 파일 생성 위치를 지정
-//    tasks.withType(JavaCompile) {
-//        options.getGeneratedSourceOutputDirectory().set(file(generated))
-//    }
-
-    // java source set 에 querydsl QClass 위치 추가
-//    sourceSets {
-//        main.java.srcDirs += [ generated ]
-//    }
-
-    // gradle clean 시에 QClass 디렉토리 삭제
-//    clean {
-//        delete file(generated)
-//    }
-
 }
-
-

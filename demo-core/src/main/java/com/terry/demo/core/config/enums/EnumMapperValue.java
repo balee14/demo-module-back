@@ -1,21 +1,18 @@
 package com.terry.demo.core.config.enums;
 
+import lombok.Getter;
 import lombok.ToString;
 
+@Getter
 @ToString
 public class EnumMapperValue {
 
-    private String code;
-    private String title;
+    private final String key;
+    private final String value;
 
     public EnumMapperValue(EnumMapperType enumMapperType) {
-        code = enumMapperType.getCode();
-        title = enumMapperType.getTitle();
+        key = enumMapperType.getKey();
+        value = enumMapperType.getValue();
     }
-
-    public String getValue() { return code;}
-
-    public String getLabel() { return title;}
-
 
 }

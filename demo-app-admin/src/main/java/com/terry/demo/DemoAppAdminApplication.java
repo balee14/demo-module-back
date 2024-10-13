@@ -5,6 +5,7 @@ import java.util.TimeZone;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.autoconfigure.domain.EntityScan;
+import org.springframework.boot.context.ApplicationPidFileWriter;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 
 @SpringBootApplication(scanBasePackages = "com.terry.demo")
@@ -14,7 +15,9 @@ public class DemoAppAdminApplication {
 
 	public static void main(String[] args) {
 
-		SpringApplication.run(DemoAppAdminApplication.class, args);
+		SpringApplication api = new SpringApplication(DemoAppAdminApplication.class);
+		api.addListeners(new ApplicationPidFileWriter());
+		api.run(args);
 
 	}
 

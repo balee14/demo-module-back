@@ -1,7 +1,6 @@
 package com.terry.demo.core.util;
 
 
-
 import com.terry.demo.core.config.ApplicationContextConfig;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.context.ApplicationContext;
