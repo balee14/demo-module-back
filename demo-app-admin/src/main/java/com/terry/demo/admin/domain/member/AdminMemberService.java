@@ -9,6 +9,8 @@ import com.terry.demo.admin.domain.member.dto.response.AdminMemberDtoResponse;
 import com.terry.demo.admin.domain.member.dto.response.AdminMemberListResponse;
 import com.terry.demo.admin.domain.member.dto.response.AdminMemberQueryDtoResponse;
 import com.terry.demo.admin.domain.member.mapper.AdminMemberMapper;
+import com.terry.demo.core.config.enums.EnumMapper;
+import com.terry.demo.core.config.enums.EnumMapperValue;
 import com.terry.demo.core.dto.common.CommonCustomType;
 import com.terry.demo.core.dto.common.CommonRuntimeException;
 import com.terry.demo.core.dto.member.MemberDto;
@@ -34,6 +36,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
 
@@ -49,6 +52,16 @@ public class AdminMemberService {
     private final AuthorityRepository authorityRepository;
     private final MemberAuthorityRepository memberAuthorityRepository;
     private final PasswordEncoder passwordEncoder;
+    private final EnumMapper enumMapper;
+
+    /**
+     * 회원상태 enums 조회
+     */
+    public List<EnumMapperValue> getMemberStateEnums() {
+
+        return enumMapper.get("MemberStateEnum");
+
+    }
 
     /**
      * admin member 목록 조회

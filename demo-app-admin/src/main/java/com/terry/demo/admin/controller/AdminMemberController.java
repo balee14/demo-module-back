@@ -8,12 +8,15 @@ import com.terry.demo.admin.domain.member.dto.response.AdminMemberCntResponse;
 import com.terry.demo.admin.domain.member.dto.response.AdminMemberDtoResponse;
 import com.terry.demo.admin.domain.member.dto.response.AdminMemberListResponse;
 import com.terry.demo.admin.domain.member.dto.response.AdminMemberQueryDtoResponse;
+import com.terry.demo.core.config.enums.EnumMapperValue;
 import com.terry.demo.core.dto.common.CommonResponseEntity;
 import com.terry.demo.core.dto.common.CommonResponseEntityType;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
 @RequiredArgsConstructor
@@ -25,6 +28,19 @@ public class AdminMemberController {
      */
 
     private final AdminMemberService adminMemberService;
+
+    /**
+     * 회원상태 enums 조회
+     */
+    @GetMapping("/member/memberStateEnums")
+    public ResponseEntity<?> getMemberStateEnums() {
+
+        List<EnumMapperValue> menuCategoryList = adminMemberService.getMemberStateEnums();
+
+        return new ResponseEntity<>(new CommonResponseEntity<>(CommonResponseEntityType.OK, menuCategoryList)
+                , CommonResponseEntityType.OK.getHttpStatus());
+
+    }
 
     /**
      * 모든 member 목록 조회
