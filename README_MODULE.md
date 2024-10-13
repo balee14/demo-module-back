@@ -13,16 +13,18 @@
 
 ## demo-app-batch
 - 배치 서버
+- Spring Batch + quartz 적용
 
 ## demo-app-user
 - 사용자 서버
 
 ## demo-core
-- 공통 처리
+- 공통 처리(enum, jpa, entity)
 
 ## demo-domain-xx
 - 테스트(test), 회원(member) 등등 도메인 처리
 - service -> RepositoryImpl : Querydsl 사용
+- demo-doamin-member : Spring Security, Jwt 등등
 
 ## demo-infra-aws
 - aws s3 설정 
