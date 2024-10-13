@@ -9,10 +9,9 @@ import lombok.*;
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 public class BatchTestRequest {
 
-    // @Comment("ID")
     private PfJobEnum jobName;
 
-    private String batchApiId;
+    private String jobParameters;
 
 }
 

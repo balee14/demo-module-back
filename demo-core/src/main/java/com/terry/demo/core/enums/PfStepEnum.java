@@ -11,7 +11,8 @@ import java.util.Arrays;
 public enum PfStepEnum implements EnumMapperType {
 
     // Job 정의
-    TEST_STEP("testStep", "테스트 스텝");
+    TEST_TASKLET_STEP("testTaskletStep", "테스트 Tasklet 등록"),
+    TEST_ITEM_STEP("testItemStep", "테스트 등록");
 
     private final String stepId;
     private final String stepName;

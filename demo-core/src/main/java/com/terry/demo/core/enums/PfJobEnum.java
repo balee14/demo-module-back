@@ -11,7 +11,8 @@ import java.util.Arrays;
 public enum PfJobEnum implements EnumMapperType {
 
     // Job 정의
-    TEST_JOB("testJob", "테스트 등록");
+    TEST_TASKLET_JOB("testTaskletJob", "테스트 Tasklet 등록"),
+    TEST_ITEM_JOB("testItemJob", "테스트 등록");
 
     private final String jobId;
     private final String jobName;
